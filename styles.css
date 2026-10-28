@@ -1,0 +1,427 @@
+/* ==========================================================================
+   EARTH BOTANICAL THEME & APPLE LIQUID GLASS PORTFOLIO
+   Design System: Deep Obsidian Forest + Emerald Foliage + Apple Glass
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Root Variables & Color Tokens
+   -------------------------------------------------------------------------- */
+:root {
+  /* Earth Forest Palette */
+  --forest-950: #030805;
+  --forest-900: #06140b;
+  --forest-850: #092013;
+  --forest-800: #0d2b1a;
+  --forest-700: #133f27;
+  --forest-600: #1a5635;
+  
+  /* Lush Emerald & Mint Accents */
+  --emerald-300: #6ee7b7;
+  --emerald-400: #34d399;
+  --emerald-500: #10b981;
+  --emerald-600: #059669;
+  
+  /* Glass Tokens */
+  --glass-bg: rgba(255, 255, 255, 0.03);
+  --glass-border: rgba(255, 255, 255, 0.12);
+  --glass-highlight: rgba(255, 255, 255, 0.5);
+  --glass-glow: rgba(52, 211, 153, 0.18);
+  
+  /* Fonts */
+  --font-sans: 'Poppins', 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-serif: 'Source Serif 4', Georgia, serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+}
+
+/* --------------------------------------------------------------------------
+   Reset & Base Styles
+   -------------------------------------------------------------------------- */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-family: var(--font-sans);
+  background-color: var(--forest-950);
+  color: #ffffff;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background-color: var(--forest-950);
+  color: #ffffff;
+  overflow-x: hidden;
+  position: relative;
+  min-height: 100vh;
+}
+
+/* Hide default cursor on desktops to reveal custom Apple glass round cursor */
+@media (pointer: fine) {
+  * {
+    cursor: none !important;
+  }
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font-family: inherit;
+  background: none;
+  border: none;
+  color: inherit;
+  cursor: pointer;
+}
+
+/* --------------------------------------------------------------------------
+   Custom Apple Glass Round Cursor System
+   - Default: Solid white round cursor dot with luminous outer halo
+   - Over Text: Morphs into transparent Apple Glass lens with refraction & blur
+   -------------------------------------------------------------------------- */
+.cursor-dot {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background-color: #ffffff;
+  pointer-events: none;
+  z-index: 99999;
+  transform: translate3d(-100px, -100px, 0) translate(-50%, -50%);
+  box-shadow: 0 0 16px rgba(255, 255, 255, 0.85), 0 0 28px rgba(52, 211, 153, 0.4);
+  transition: width 0.32s cubic-bezier(0.16, 1, 0.3, 1),
+              height 0.32s cubic-bezier(0.16, 1, 0.3, 1),
+              background 0.3s ease,
+              border 0.3s ease,
+              box-shadow 0.3s ease,
+              backdrop-filter 0.3s ease,
+              -webkit-backdrop-filter 0.3s ease,
+              opacity 0.2s ease;
+  will-change: transform;
+}
+
+.cursor-follower {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 99998;
+  transform: translate3d(-100px, -100px, 0) translate(-50%, -50%);
+  border: 1px solid rgba(52, 211, 153, 0.35);
+  background: radial-gradient(circle, rgba(52, 211, 153, 0.12) 0%, rgba(52, 211, 153, 0) 70%);
+  transition: width 0.38s ease, 
+              height 0.38s ease, 
+              border-color 0.3s ease, 
+              opacity 0.2s ease;
+  will-change: transform;
+}
+
+/* APPLE GLASS TEXT HOVER STATE:
+   Transforms from solid white circle to transparent Apple Glass lens */
+.cursor-dot.cursor-text-glass {
+  width: 62px;
+  height: 62px;
+  background: rgba(255, 255, 255, 0.08) !important;
+  -webkit-backdrop-filter: blur(14px) saturate(200%) brightness(125%);
+  backdrop-filter: blur(14px) saturate(200%) brightness(125%);
+  border: 1.5px solid rgba(255, 255, 255, 0.75);
+  box-shadow: 
+    inset 0 1.5px 3px rgba(255, 255, 255, 0.85),
+    inset 0 -1.5px 3px rgba(0, 0, 0, 0.3),
+    0 12px 36px rgba(0, 0, 0, 0.5),
+    0 0 25px rgba(52, 211, 153, 0.45);
+}
+
+/* Glass lens curvature highlight */
+.cursor-dot.cursor-text-glass::before {
+  content: "";
+  position: absolute;
+  top: 5px;
+  left: 12px;
+  right: 12px;
+  height: 42%;
+  border-radius: 50% 50% 40% 40%;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.5) 0%, rgba(255, 255, 255, 0) 100%);
+  pointer-events: none;
+}
+
+/* Hide follower when in glass lens mode so the lens is crisp and unobstructed */
+.cursor-follower.cursor-hidden {
+  opacity: 0;
+  transform: translate3d(-100px, -100px, 0) translate(-50%, -50%) scale(0.5);
+}
+
+/* Interactive Click Ripple */
+.cursor-dot.cursor-click {
+  transform: translate3d(var(--cx, -100px), var(--cy, -100px), 0) translate(-50%, -50%) scale(0.85);
+}
+
+/* Hide on touch devices */
+@media (pointer: coarse) {
+  .cursor-dot, .cursor-follower {
+    display: none !important;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Apple Liquid Glass Design Elements
+   -------------------------------------------------------------------------- */
+.liquid-glass {
+  background: rgba(255, 255, 255, 0.025);
+  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(16px);
+  position: relative;
+  overflow: hidden;
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.15), 0 20px 40px rgba(0, 0, 0, 0.45);
+}
+
+.liquid-glass::before {
+  content: "";
+  pointer-events: none;
+  border-radius: inherit;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.45), rgba(255, 255, 255, 0.1) 40%, rgba(0, 0, 0, 0) 60%, rgba(52, 211, 153, 0.3));
+  padding: 1.4px;
+  position: absolute;
+  inset: 0;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+}
+
+.liquid-glass-strong {
+  background: rgba(255, 255, 255, 0.035);
+  -webkit-backdrop-filter: blur(30px);
+  backdrop-filter: blur(30px);
+  position: relative;
+  overflow: hidden;
+  box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.25), 0 25px 50px rgba(0, 0, 0, 0.55);
+}
+
+.liquid-glass-strong::before {
+  content: "";
+  pointer-events: none;
+  border-radius: inherit;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.15) 35%, rgba(0, 0, 0, 0) 65%, rgba(52, 211, 153, 0.45));
+  padding: 1.5px;
+  position: absolute;
+  inset: 0;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+}
+
+.liquid-glass-navbar {
+  background: rgba(6, 20, 11, 0.7);
+  -webkit-backdrop-filter: blur(24px) saturate(160%);
+  backdrop-filter: blur(24px) saturate(160%);
+  position: relative;
+}
+
+.liquid-glass-card {
+  background: rgba(255, 255, 255, 0.025);
+  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(16px);
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.12), 0 15px 35px rgba(0, 0, 0, 0.4);
+}
+
+/* Glass Buttons */
+.liquid-glass-btn {
+  background: rgba(255, 255, 255, 0.04);
+  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(16px);
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.15);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.liquid-glass-btn:hover {
+  background: rgba(255, 255, 255, 0.08);
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.3), 0 0 20px rgba(52, 211, 153, 0.25);
+  transform: translateY(-2px);
+}
+
+.liquid-glass-btn-strong {
+  background: rgba(255, 255, 255, 0.05);
+  -webkit-backdrop-filter: blur(24px);
+  backdrop-filter: blur(24px);
+  box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.3), 0 10px 25px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.liquid-glass-btn-strong:hover {
+  background: rgba(255, 255, 255, 0.1);
+  box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.5), 0 0 30px rgba(52, 211, 153, 0.4);
+  transform: translateY(-2px);
+}
+
+.liquid-glass-btn-primary {
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.liquid-glass-btn-primary:hover {
+  transform: translateY(-2px) scale(1.02);
+}
+
+/* --------------------------------------------------------------------------
+   Typography & Interactive Text Hover
+   -------------------------------------------------------------------------- */
+.font-sans {
+  font-family: var(--font-sans);
+}
+
+.font-serif {
+  font-family: var(--font-serif);
+}
+
+.font-mono {
+  font-family: var(--font-mono);
+}
+
+.hover-lift {
+  transition: transform 0.3s ease, text-shadow 0.3s ease;
+}
+
+.hover-lift:hover {
+  transform: translateY(-3px);
+  text-shadow: 0 0 35px rgba(52, 211, 153, 0.45);
+}
+
+/* --------------------------------------------------------------------------
+   Infinite Testimonials Marquee
+   -------------------------------------------------------------------------- */
+.marquee-wrapper {
+  mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+}
+
+.marquee-content {
+  animation: marquee-scroll 45s linear infinite;
+  display: flex;
+  width: max-content;
+}
+
+.marquee-wrapper:hover .marquee-content {
+  animation-play-state: paused;
+}
+
+@keyframes marquee-scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Interactive FAQ Accordion
+   -------------------------------------------------------------------------- */
+.faq-item.active {
+  border-color: rgba(52, 211, 153, 0.45);
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.faq-item.active .faq-icon {
+  transform: rotate(45deg);
+  color: var(--emerald-300);
+}
+
+.faq-item.active .faq-answer {
+  display: block;
+  animation: slide-down 0.35s ease;
+}
+
+@keyframes slide-down {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Works Filter
+   -------------------------------------------------------------------------- */
+.filter-btn.active {
+  background: rgba(52, 211, 153, 0.25) !important;
+  border-color: rgba(52, 211, 153, 0.6) !important;
+  color: #ffffff !important;
+}
+
+.work-card.hide-card {
+  display: none !important;
+}
+
+/* --------------------------------------------------------------------------
+   Utility & Layout Classes (Self-Contained Tailwind Equivalents)
+   -------------------------------------------------------------------------- */
+.bg-forest-950 { background-color: var(--forest-950); }
+.bg-forest-900 { background-color: var(--forest-900); }
+.bg-forest-850 { background-color: var(--forest-850); }
+.bg-forest-800 { background-color: var(--forest-800); }
+.bg-emerald-500 { background-color: var(--emerald-500); }
+.bg-emerald-400 { background-color: var(--emerald-400); }
+
+.text-forest-950 { color: var(--forest-950); }
+.text-emerald-200 { color: #a7f3d0; }
+.text-emerald-300 { color: var(--emerald-300); }
+.text-emerald-400 { color: var(--emerald-400); }
+.text-emerald-500 { color: var(--emerald-500); }
+
+.border-emerald-500\/10 { border-color: rgba(16, 185, 129, 0.1); }
+.border-emerald-500\/15 { border-color: rgba(16, 185, 129, 0.15); }
+.border-emerald-500\/20 { border-color: rgba(16, 185, 129, 0.2); }
+.border-emerald-500\/25 { border-color: rgba(16, 185, 129, 0.25); }
+.border-emerald-500\/30 { border-color: rgba(16, 185, 129, 0.3); }
+.border-emerald-500\/40 { border-color: rgba(16, 185, 129, 0.4); }
+.border-emerald-400\/40 { border-color: rgba(52, 211, 153, 0.4); }
+.border-emerald-400\/50 { border-color: rgba(52, 211, 153, 0.5); }
+.border-emerald-400\/60 { border-color: rgba(52, 211, 153, 0.6); }
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 7px;
+}
+::-webkit-scrollbar-track {
+  background: var(--forest-950);
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(52, 211, 153, 0.25);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(52, 211, 153, 0.5);
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.96); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.25s ease forwards;
+}
+
+@keyframes fadeDown {
+  from { opacity: 0; transform: translateY(-15px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-down {
+  animation: fadeDown 0.8s ease forwards;
+}
+
