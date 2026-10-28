@@ -2,11 +2,12 @@
  * EARTH BOTANICAL PORTFOLIO - CORE ENGINE
  * Features:
  * 1. Apple Glass Round Cursor (White to Transparent Glass over Text)
- * 2. Canvas Bioluminescent Spores & Botanical Particle System
- * 3. Web Audio API Generative Forest Ambiance Synthesizer
- * 4. Dynamic Profile & Position Customizer with LocalStorage
- * 5. Animated Stats Counters & FAQ Accordion
- * 6. Work Filters & High-Fidelity Video Modal
+ * 2. whypriyanshu.in Interactive Video Cards (Autoplay on InView, Sound & Seek Controls, Scale Hover)
+ * 3. whypriyanshu.in Fullscreen Video Modal (Adaptive 16:9 and 9:16 aspect ratio)
+ * 4. Canvas Bioluminescent Spores & Botanical Particle System
+ * 5. Web Audio API Generative Forest Ambiance Synthesizer
+ * 6. Dynamic Profile & Position Customizer with LocalStorage
+ * 7. Animated Stats Counters & FAQ Accordion
  */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -127,10 +128,9 @@ document.addEventListener('DOMContentLoaded', () => {
       if (cursorFollower) cursorFollower.style.opacity = '1';
     }
 
-    // Inspect hovered element to trigger Apple Glass transition
     const target = e.target;
     if (target) {
-      // Check if hovering over text
+      // Check text element
       const isText = !!(
         target.tagName === 'P' ||
         target.tagName === 'H1' ||
@@ -145,11 +145,11 @@ document.addEventListener('DOMContentLoaded', () => {
         target.closest('p, h1, h2, h3, h4, h5, h6, span, li, blockquote')
       );
 
-      // Check if interactive (button, link, input)
+      // Check interactive
       const isInteractive = !!(
         target.tagName === 'A' ||
         target.tagName === 'BUTTON' ||
-        target.closest('a, button, input, .work-card, .preset-btn')
+        target.closest('a, button, input, .interactive-card, .preset-btn')
       );
 
       if (isText !== isHoveringText) {
@@ -176,7 +176,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }, { passive: true });
 
-  // Click Feedback
   window.addEventListener('mousedown', () => {
     if (cursorDot) cursorDot.classList.add('cursor-click');
   });
@@ -185,13 +184,10 @@ document.addEventListener('DOMContentLoaded', () => {
     if (cursorDot) cursorDot.classList.remove('cursor-click');
   });
 
-  // Smooth Render Loop using requestAnimationFrame with Spring Physics
   function renderCursor() {
-    // Lerp dot
     dotX += (mouseX - dotX) * 0.28;
     dotY += (mouseY - dotY) * 0.28;
 
-    // Lerp follower
     followerX += (mouseX - followerX) * 0.14;
     followerY += (mouseY - followerY) * 0.14;
 
@@ -209,7 +205,240 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   // =========================================================================
-  // 3. AMBIENT NATURE CANVAS (Bioluminescent Spores & Emerald Particles)
+  // 3. INTERACTIVE VIDEO CARDS & PLAYBACK SYSTEM (Exact whypriyanshu.in)
+  // =========================================================================
+  const videoCards = document.querySelectorAll('.interactive-video-card');
+  const videoModal = document.getElementById('video-modal');
+  const videoModalDialog = document.getElementById('video-modal-dialog');
+  const modalVideoBox = document.getElementById('modal-video-box');
+  const modalVideoElement = document.getElementById('modal-video-element');
+  const modalVideoTitle = document.getElementById('modal-video-title');
+  const modalVideoSubtitle = document.getElementById('modal-video-subtitle');
+  const closeVideoModalBtn = document.getElementById('close-video-modal');
+  const videoModalBackdrop = document.getElementById('video-modal-backdrop');
+
+  // InView Auto-Playback Observer (plays when scrolled into view, pauses when out)
+  const videoObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      const card = entry.target;
+      const video = card.querySelector('video.card-video');
+      if (!video) return;
+
+      if (entry.isIntersecting) {
+        video.play().then(() => {
+          updatePlayPauseButton(card, true);
+        }).catch(() => {});
+      } else {
+        video.pause();
+        updatePlayPauseButton(card, false);
+      }
+    });
+  }, { threshold: 0.45 });
+
+  function updatePlayPauseButton(card, isPlaying) {
+    const playBtn = card.querySelector('.play-pause-btn');
+    if (!playBtn) return;
+    const pauseBars = playBtn.querySelector('.pause-bars');
+    const playArrow = playBtn.querySelector('.play-arrow');
+
+    if (isPlaying) {
+      if (pauseBars) pauseBars.classList.remove('hidden');
+      if (playArrow) playArrow.classList.add('hidden');
+    } else {
+      if (pauseBars) pauseBars.classList.add('hidden');
+      if (playArrow) playArrow.classList.remove('hidden');
+    }
+  }
+
+  videoCards.forEach(card => {
+    videoObserver.observe(card);
+
+    const video = card.querySelector('video.card-video');
+    const loader = card.querySelector('.video-loader');
+    const soundBtn = card.querySelector('.sound-toggle-btn');
+    const soundOffIcon = card.querySelector('.sound-off-icon');
+    const soundOnIcon = card.querySelector('.sound-on-icon');
+    const controlsBtn = card.querySelector('.controls-toggle-btn');
+    const controlsBar = card.querySelector('.video-controls-bar');
+    const playPauseBtn = card.querySelector('.play-pause-btn');
+    const seekBackBtn = card.querySelector('.seek-back-btn');
+    const seekFwdBtn = card.querySelector('.seek-fwd-btn');
+
+    // Buffer Spinner Management
+    if (video && loader) {
+      video.addEventListener('canplay', () => {
+        loader.style.opacity = '0';
+      });
+      video.addEventListener('playing', () => {
+        loader.style.opacity = '0';
+        updatePlayPauseButton(card, true);
+      });
+      video.addEventListener('pause', () => {
+        updatePlayPauseButton(card, false);
+      });
+      video.addEventListener('waiting', () => {
+        loader.style.opacity = '1';
+      });
+    }
+
+    // Sound Mute/Unmute Toggle
+    if (soundBtn && video) {
+      soundBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        video.muted = !video.muted;
+        if (video.muted) {
+          if (soundOffIcon) soundOffIcon.classList.remove('hidden');
+          if (soundOnIcon) soundOnIcon.classList.add('hidden');
+          soundBtn.classList.remove('bg-white/30', 'border-emerald-400');
+        } else {
+          // Unmuted: mute any other card so sounds don't overlap
+          videoCards.forEach(otherCard => {
+            if (otherCard !== card) {
+              const otherVideo = otherCard.querySelector('video.card-video');
+              const otherSoundOff = otherCard.querySelector('.sound-off-icon');
+              const otherSoundOn = otherCard.querySelector('.sound-on-icon');
+              if (otherVideo) otherVideo.muted = true;
+              if (otherSoundOff) otherSoundOff.classList.remove('hidden');
+              if (otherSoundOn) otherSoundOn.classList.add('hidden');
+            }
+          });
+
+          if (soundOffIcon) soundOffIcon.classList.add('hidden');
+          if (soundOnIcon) soundOnIcon.classList.remove('hidden');
+          soundBtn.classList.add('bg-white/30', 'border-emerald-400');
+        }
+      });
+    }
+
+    // Toggle Floating Controls Bar
+    if (controlsBtn && controlsBar) {
+      controlsBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const isOpen = controlsBar.classList.contains('active');
+        if (isOpen) {
+          controlsBar.classList.remove('active');
+          controlsBtn.classList.remove('btn-active');
+        } else {
+          // Close other active bars
+          document.querySelectorAll('.video-controls-bar.active').forEach(bar => {
+            bar.classList.remove('active');
+          });
+          document.querySelectorAll('.controls-toggle-btn.btn-active').forEach(b => {
+            b.classList.remove('btn-active');
+          });
+
+          controlsBar.classList.add('active');
+          controlsBtn.classList.add('btn-active');
+        }
+      });
+    }
+
+    // Play / Pause Toggle inside Controls Bar
+    if (playPauseBtn && video) {
+      playPauseBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        if (video.paused) {
+          video.play();
+          updatePlayPauseButton(card, true);
+        } else {
+          video.pause();
+          updatePlayPauseButton(card, false);
+        }
+      });
+    }
+
+    // Seek -5s
+    if (seekBackBtn && video) {
+      seekBackBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        video.currentTime = Math.max(0, video.currentTime - 5);
+      });
+    }
+
+    // Seek +5s
+    if (seekFwdBtn && video) {
+      seekFwdBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        video.currentTime = Math.min(video.duration || 9999, video.currentTime + 5);
+      });
+    }
+
+    // Card Click -> Open Fullscreen Modal (unless clicking a button)
+    card.addEventListener('click', (e) => {
+      if (e.target.closest('button')) return;
+
+      const videoSrc = card.getAttribute('data-video');
+      const title = card.getAttribute('data-title');
+      const isVertical = card.getAttribute('data-vertical') === 'true';
+
+      openVideoModal({ videoSrc, title, isVertical });
+    });
+  });
+
+
+  // Modal Open/Close Logic (Exact whypriyanshu.in experience)
+  function openVideoModal({ videoSrc, title, isVertical }) {
+    if (!videoModal || !modalVideoElement) return;
+
+    modalVideoElement.src = videoSrc;
+    if (modalVideoTitle) modalVideoTitle.textContent = title;
+    if (modalVideoSubtitle) {
+      modalVideoSubtitle.textContent = isVertical ? 'Short Form • Vertical 9:16' : 'Cinematic Edit • 4K Resolution';
+    }
+
+    if (isVertical) {
+      modalVideoBox.className = 'relative w-full bg-black flex items-center justify-center aspect-[9/16]';
+      videoModalDialog.className = 'relative z-10 w-full overflow-hidden rounded-3xl bg-white/[0.02] border border-white/10 shadow-[0_25px_80px_rgba(0,0,0,0.9)] max-w-[420px] mx-auto transform scale-95 transition-all duration-300';
+    } else {
+      modalVideoBox.className = 'relative w-full bg-black flex items-center justify-center aspect-video';
+      videoModalDialog.className = 'relative z-10 w-full overflow-hidden rounded-3xl bg-white/[0.02] border border-white/10 shadow-[0_25px_80px_rgba(0,0,0,0.9)] max-w-6xl mx-auto transform scale-95 transition-all duration-300';
+    }
+
+    videoModal.classList.add('modal-active');
+    modalVideoElement.play().catch(() => {});
+  }
+
+  function closeVideoModal() {
+    if (!videoModal) return;
+    videoModal.classList.remove('modal-active');
+    if (modalVideoElement) {
+      modalVideoElement.pause();
+      modalVideoElement.src = '';
+    }
+  }
+
+  if (closeVideoModalBtn) closeVideoModalBtn.addEventListener('click', closeVideoModal);
+  if (videoModalBackdrop) videoModalBackdrop.addEventListener('click', closeVideoModal);
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeVideoModal();
+  });
+
+
+  // =========================================================================
+  // 4. WORKS FILTERING
+  // =========================================================================
+  const filterBtns = document.querySelectorAll('.filter-btn');
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      filterBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      const filter = btn.getAttribute('data-filter');
+
+      videoCards.forEach(card => {
+        const cat = card.getAttribute('data-category');
+        if (filter === 'all' || cat === filter) {
+          card.classList.remove('hide-card');
+        } else {
+          card.classList.add('hide-card');
+        }
+      });
+    });
+  });
+
+
+  // =========================================================================
+  // 5. AMBIENT NATURE CANVAS (Bioluminescent Spores & Emerald Particles)
   // =========================================================================
   const canvas = document.getElementById('nature-canvas');
   if (canvas) {
@@ -235,11 +464,11 @@ document.addEventListener('DOMContentLoaded', () => {
         this.y = init ? Math.random() * height : height + 10;
         this.radius = Math.random() * 2.5 + 1;
         this.vx = (Math.random() - 0.5) * 0.4;
-        this.vy = -(Math.random() * 0.5 + 0.2); // Drifts upward like fireflies
+        this.vy = -(Math.random() * 0.5 + 0.2);
         this.alpha = Math.random() * 0.6 + 0.2;
         this.pulseSpeed = Math.random() * 0.02 + 0.01;
         this.pulse = Math.random() * Math.PI * 2;
-        this.hue = Math.random() > 0.3 ? 155 : 140; // Emerald to deep mint green
+        this.hue = Math.random() > 0.3 ? 155 : 140;
       }
 
       update() {
@@ -247,7 +476,6 @@ document.addEventListener('DOMContentLoaded', () => {
         this.y += this.vy;
         this.pulse += this.pulseSpeed;
 
-        // Subtle reaction to mouse position
         const dx = mouseX - this.x;
         const dy = mouseY - this.y;
         const dist = Math.sqrt(dx * dx + dy * dy);
@@ -292,8 +520,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   // =========================================================================
-  // 4. GENERATIVE FOREST AMBIANCE SYNTHESIZER (Web Audio API)
-  // Synthesizes lush wind, canopy rustle, and subtle chimes in real-time.
+  // 6. GENERATIVE FOREST AMBIANCE SYNTHESIZER (Web Audio API)
   // =========================================================================
   let audioCtx = null;
   let isAudioPlaying = false;
@@ -309,7 +536,6 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!AudioContext) return;
     audioCtx = new AudioContext();
 
-    // 1. Generate Pink Noise buffer for natural wind rustling
     const bufferSize = audioCtx.sampleRate * 2;
     const noiseBuffer = audioCtx.createBuffer(1, bufferSize, audioCtx.sampleRate);
     const output = noiseBuffer.getChannelData(0);
@@ -324,7 +550,7 @@ document.addEventListener('DOMContentLoaded', () => {
       b4 = 0.55000 * b4 + white * 0.5329522;
       b5 = -0.7616 * b5 - white * 0.0168980;
       output[i] = b0 + b1 + b2 + b3 + b4 + b5 + b6 + white * 0.5362;
-      output[i] *= 0.05; // Gentle volume
+      output[i] *= 0.05;
       b6 = white * 0.115926;
     }
 
@@ -332,14 +558,12 @@ document.addEventListener('DOMContentLoaded', () => {
     windSource.buffer = noiseBuffer;
     windSource.loop = true;
 
-    // Filter to simulate soft foliage resonance
     const windFilter = audioCtx.createBiquadFilter();
     windFilter.type = 'lowpass';
     windFilter.frequency.setValueAtTime(420, audioCtx.currentTime);
 
-    // Filter LFO to create undulating canopy breeze
     const lfo = audioCtx.createOscillator();
-    lfo.frequency.setValueAtTime(0.15, audioCtx.currentTime); // 1 cycle per 6.6s
+    lfo.frequency.setValueAtTime(0.15, audioCtx.currentTime);
     const lfoGain = audioCtx.createGain();
     lfoGain.gain.setValueAtTime(250, audioCtx.currentTime);
     lfo.connect(lfoGain);
@@ -357,13 +581,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
   if (audioToggle) {
     audioToggle.addEventListener('click', () => {
-      if (!audioCtx) {
-        initForestAudio();
-      }
-
-      if (audioCtx.state === 'suspended') {
-        audioCtx.resume();
-      }
+      if (!audioCtx) initForestAudio();
+      if (audioCtx.state === 'suspended') audioCtx.resume();
 
       if (!isAudioPlaying) {
         windGain.gain.setTargetAtTime(0.35, audioCtx.currentTime, 1.2);
@@ -383,7 +602,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   // =========================================================================
-  // 5. SCROLL PROGRESS BAR
+  // 7. SCROLL PROGRESS BAR
   // =========================================================================
   const scrollProgress = document.getElementById('scroll-progress');
   window.addEventListener('scroll', () => {
@@ -396,7 +615,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   // =========================================================================
-  // 6. STATS COUNTER ANIMATION (IntersectionObserver)
+  // 8. STATS COUNTER ANIMATION (IntersectionObserver)
   // =========================================================================
   const counters = document.querySelectorAll('.counter');
   let counted = false;
@@ -413,7 +632,6 @@ document.addEventListener('DOMContentLoaded', () => {
           function updateCount(currentTime) {
             const elapsed = currentTime - startTime;
             const progress = Math.min(elapsed / duration, 1);
-            // Ease-out expo
             const easeProgress = 1 - Math.pow(2, -10 * progress);
             const current = Math.floor(easeProgress * target);
 
@@ -437,77 +655,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   // =========================================================================
-  // 7. WORKS FILTERING
-  // =========================================================================
-  const filterBtns = document.querySelectorAll('.filter-btn');
-  const workCards = document.querySelectorAll('.work-card');
-
-  filterBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-      filterBtns.forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-
-      const filter = btn.getAttribute('data-filter');
-
-      workCards.forEach(card => {
-        const cat = card.getAttribute('data-category');
-        if (filter === 'all' || cat === filter) {
-          card.classList.remove('hide-card');
-        } else {
-          card.classList.add('hide-card');
-        }
-      });
-    });
-  });
-
-
-  // =========================================================================
-  // 8. VIDEO MODAL PLAYER
-  // =========================================================================
-  const videoModal = document.getElementById('video-modal');
-  const modalVideoElement = document.getElementById('modal-video-element');
-  const modalVideoTitle = document.getElementById('modal-video-title');
-  const closeVideoModalBtn = document.getElementById('close-video-modal');
-
-  document.querySelectorAll('.play-modal-trigger').forEach(trigger => {
-    trigger.addEventListener('click', (e) => {
-      e.preventDefault();
-      const videoSrc = trigger.getAttribute('data-video');
-      const title = trigger.getAttribute('data-title');
-
-      if (modalVideoElement && videoSrc) {
-        modalVideoElement.src = videoSrc;
-        modalVideoElement.play().catch(() => {});
-      }
-      if (modalVideoTitle && title) {
-        modalVideoTitle.textContent = title;
-      }
-      if (videoModal) {
-        videoModal.classList.remove('hidden');
-      }
-    });
-  });
-
-  function closeVideoModal() {
-    if (videoModal) videoModal.classList.add('hidden');
-    if (modalVideoElement) {
-      modalVideoElement.pause();
-      modalVideoElement.src = '';
-    }
-  }
-
-  if (closeVideoModalBtn) closeVideoModalBtn.addEventListener('click', closeVideoModal);
-  if (videoModal) {
-    videoModal.addEventListener('click', (e) => {
-      if (e.target === videoModal) closeVideoModal();
-    });
-  }
-  window.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') closeVideoModal();
-  });
-
-
-  // =========================================================================
   // 9. FAQ ACCORDION
   // =========================================================================
   const faqItems = document.querySelectorAll('.faq-item');
@@ -517,9 +664,7 @@ document.addEventListener('DOMContentLoaded', () => {
       questionBtn.addEventListener('click', () => {
         const isOpen = item.classList.contains('active');
         faqItems.forEach(i => i.classList.remove('active'));
-        if (!isOpen) {
-          item.classList.add('active');
-        }
+        if (!isOpen) item.classList.add('active');
       });
     }
   });
@@ -548,4 +693,3 @@ document.addEventListener('DOMContentLoaded', () => {
   if (yearElem) yearElem.textContent = new Date().getFullYear();
 
 });
-

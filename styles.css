@@ -1,6 +1,7 @@
 /* ==========================================================================
    EARTH BOTANICAL THEME & APPLE LIQUID GLASS PORTFOLIO
    Design System: Deep Obsidian Forest + Emerald Foliage + Apple Glass
+   Interactive Video Player & Micro-Interactions (Modeled after whypriyanshu.in)
    ========================================================================== */
 
 /* --------------------------------------------------------------------------
@@ -16,6 +17,7 @@
   --forest-600: #1a5635;
   
   /* Lush Emerald & Mint Accents */
+  --emerald-200: #a7f3d0;
   --emerald-300: #6ee7b7;
   --emerald-400: #34d399;
   --emerald-500: #10b981;
@@ -196,6 +198,7 @@ button {
   inset: 0;
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   mask-composite: exclude;
 }
 
@@ -218,6 +221,7 @@ button {
   inset: 0;
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   mask-composite: exclude;
 }
 
@@ -270,6 +274,62 @@ button {
 
 .liquid-glass-btn-primary:hover {
   transform: translateY(-2px) scale(1.02);
+}
+
+/* --------------------------------------------------------------------------
+   Interactive Video Cards & Playback System (whypriyanshu.in replication)
+   -------------------------------------------------------------------------- */
+.interactive-card {
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.4s ease,
+              background-color 0.3s ease,
+              border-color 0.3s ease;
+}
+
+.interactive-card:hover {
+  transform: scale(1.01);
+  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.8), 0 0 40px rgba(52, 211, 153, 0.25);
+}
+
+/* Video scale on hover inside card */
+.interactive-video-card video.card-video {
+  transform: scale(1.05);
+  transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.interactive-video-card:hover video.card-video {
+  transform: scale(1.0);
+}
+
+/* Floating Playback Controls Bar */
+.video-controls-bar {
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(-50%, 15px);
+  transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.video-controls-bar.active {
+  opacity: 1 !important;
+  pointer-events: auto !important;
+  transform: translate(-50%, 0) !important;
+}
+
+/* Top control button active state */
+.controls-toggle-btn.btn-active {
+  background-color: #ffffff !important;
+  color: #000000 !important;
+}
+
+/* Modal Open/Close Transitions */
+#video-modal.modal-active {
+  opacity: 1 !important;
+  pointer-events: auto !important;
+}
+
+#video-modal.modal-active #video-modal-dialog {
+  transform: scale(1) !important;
 }
 
 /* --------------------------------------------------------------------------
@@ -361,7 +421,7 @@ button {
   color: #ffffff !important;
 }
 
-.work-card.hide-card {
+.interactive-video-card.hide-card {
   display: none !important;
 }
 
@@ -376,7 +436,7 @@ button {
 .bg-emerald-400 { background-color: var(--emerald-400); }
 
 .text-forest-950 { color: var(--forest-950); }
-.text-emerald-200 { color: #a7f3d0; }
+.text-emerald-200 { color: var(--emerald-200); }
 .text-emerald-300 { color: var(--emerald-300); }
 .text-emerald-400 { color: var(--emerald-400); }
 .text-emerald-500 { color: var(--emerald-500); }
@@ -424,4 +484,3 @@ button {
 .animate-fade-down {
   animation: fadeDown 0.8s ease forwards;
 }
-

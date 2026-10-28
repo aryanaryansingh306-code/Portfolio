@@ -587,205 +587,450 @@
     <!-- ============================================== -->
     <!-- SELECTED WORKS PORTFOLIO                       -->
     <!-- ============================================== -->
+    <!-- ============================================== -->
+    <!-- SELECTED WORKS PORTFOLIO                       -->
+    <!-- Modeled after whypriyanshu.in with live video  -->
+    <!-- ============================================== -->
     <section id="works" class="relative z-10 px-6 py-32 lg:px-20 max-w-7xl mx-auto">
       
-      <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16">
+      <!-- Section Header with Category Filters -->
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-20">
         <div>
-          <span class="text-[10px] font-bold tracking-[0.4em] text-emerald-400 uppercase inline-block mb-3">Featured Portfolio</span>
-          <h2 class="text-4xl sm:text-6xl font-medium tracking-tight text-white">Selected Works</h2>
-          <p class="mt-2 text-white/50 text-lg">Cinematic narratives, sound-synced rhythm, viral impact.</p>
+          <span class="text-[10px] font-bold tracking-[0.4em] text-emerald-400 uppercase inline-block mb-3">Portfolio</span>
+          <h2 class="text-5xl sm:text-7xl font-medium tracking-tight text-white">Selected Works</h2>
+          <p class="mt-4 text-white/50 text-xl font-light">Long Form. Narrative. Impact.</p>
         </div>
 
-        <!-- Filter Buttons -->
+        <!-- Filter Tabs -->
         <div class="flex flex-wrap items-center gap-2 p-1.5 rounded-full liquid-glass border border-emerald-500/20">
-          <button class="filter-btn active px-4 py-2 rounded-full text-xs font-semibold uppercase tracking-wider text-white bg-emerald-500/20 border border-emerald-500/40" data-filter="all">All</button>
-          <button class="filter-btn px-4 py-2 rounded-full text-xs font-semibold uppercase tracking-wider text-white/60 hover:text-white" data-filter="long">Long Form</button>
-          <button class="filter-btn px-4 py-2 rounded-full text-xs font-semibold uppercase tracking-wider text-white/60 hover:text-white" data-filter="vertical">Verticals</button>
-          <button class="filter-btn px-4 py-2 rounded-full text-xs font-semibold uppercase tracking-wider text-white/60 hover:text-white" data-filter="motion">Motion</button>
+          <button class="filter-btn active px-5 py-2.5 rounded-full text-xs font-semibold uppercase tracking-wider text-white bg-emerald-500/20 border border-emerald-500/40" data-filter="all">All</button>
+          <button class="filter-btn px-5 py-2.5 rounded-full text-xs font-semibold uppercase tracking-wider text-white/60 hover:text-white" data-filter="long">Long Form</button>
+          <button class="filter-btn px-5 py-2.5 rounded-full text-xs font-semibold uppercase tracking-wider text-white/60 hover:text-white" data-filter="vertical">Verticals</button>
         </div>
       </div>
 
-      <!-- Works Grid -->
-      <div class="grid gap-10 md:grid-cols-2 lg:grid-cols-3">
+      <!-- Long Form Cinematic Videos (Stack Layout like whypriyanshu.in) -->
+      <div class="flex flex-col gap-16 lg:gap-28 mb-32" id="long-form-container">
         
-        <!-- Work 1: Sound Design Masterpiece -->
-        <div class="work-card group relative liquid-glass rounded-[2rem] overflow-hidden border border-emerald-500/20 hover:border-emerald-400/50 transition-all duration-500" data-category="long">
-          <div class="aspect-video relative overflow-hidden bg-forest-900">
-            <!-- Thumbnail Poster Image -->
-            <img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?q=80&w=1200&auto=format&fit=crop" alt="Sound Design Edit" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 opacity-80" />
-            
-            <div class="absolute inset-0 bg-gradient-to-t from-forest-950 via-forest-950/20 to-transparent"></div>
-            
-            <!-- Play Button Overlay -->
-            <button class="play-modal-trigger absolute inset-0 flex items-center justify-center" data-title="Sound Design &amp; Atmospheric Immersion" data-video="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260315_073750_51473149-4350-4920-ae24-c8214286f323.mp4" aria-label="Play video">
-              <span class="w-16 h-16 rounded-full bg-emerald-500/20 backdrop-blur-md border border-emerald-400/60 flex items-center justify-center text-emerald-300 group-hover:scale-110 group-hover:bg-emerald-400 group-hover:text-forest-950 transition-all shadow-[0_0_25px_rgba(52,211,153,0.3)]">
-                <svg class="w-7 h-7 ml-1" viewBox="0 0 24 24" fill="currentColor">
-                  <polygon points="5 3 19 12 5 21 5 3"></polygon>
-                </svg>
-              </span>
-            </button>
-
-            <span class="absolute top-4 left-4 px-3 py-1 rounded-full bg-forest-950/80 backdrop-blur-md border border-emerald-500/30 text-[10px] font-mono tracking-widest text-emerald-300 uppercase">
-              01 • Sound Design
-            </span>
+        <!-- Video 01: Sound Design -->
+        <div class="interactive-video-card interactive-card liquid-glass group relative flex flex-col overflow-hidden rounded-[2.5rem] transition-all hover:bg-white/[0.03] cursor-pointer aspect-video border border-emerald-500/20 hover:border-emerald-400/50 shadow-[0_20px_50px_rgba(0,0,0,0.6)]" 
+             data-category="long" 
+             data-work-id="01" 
+             data-title="Sound Design" 
+             data-video="https://whypriyanshu.in/videos/work01.mp4" 
+             data-vertical="false">
+          
+          <!-- Live Looping Video Background -->
+          <div class="absolute inset-0 z-0 overflow-hidden">
+            <video class="card-video h-full w-full object-cover scale-105 transition-transform duration-700 ease-out group-hover:scale-100" 
+                   src="https://whypriyanshu.in/videos/work01.mp4" 
+                   muted 
+                   loop 
+                   playsinline 
+                   preload="metadata"></video>
+            <div class="absolute inset-0 bg-black/40 transition-opacity duration-500 group-hover:bg-black/20"></div>
           </div>
 
-          <div class="p-8">
-            <h3 class="text-2xl font-semibold text-white mb-2 group-hover:text-emerald-300 transition-colors">Acoustic Nature &amp; Atmosphere</h3>
-            <p class="text-sm text-white/60 leading-relaxed mb-6">
-              Complete audio reconstruction and Foley sound design for a cinematic documentary sequence.
-            </p>
-            <div class="flex items-center justify-between text-xs font-mono text-emerald-400/80 pt-4 border-t border-white/5">
-              <span>Premiere • Audition</span>
-              <span class="text-white/40">Watch 4K ↗</span>
+          <!-- Card Content / Typography Overlay -->
+          <div class="relative z-10 flex h-full flex-col p-8 lg:p-16 pointer-events-none">
+            <span class="font-serif text-6xl lg:text-9xl italic text-white/20 transition-colors duration-500 group-hover:text-white/40">01</span>
+            <div class="mt-auto">
+              <h3 class="text-3xl lg:text-6xl font-medium drop-shadow-lg text-white group-hover:text-emerald-200 transition-colors">Sound Design</h3>
+              <div class="mt-4 flex flex-wrap gap-2 lg:gap-3">
+                <span class="rounded-full bg-black/50 backdrop-blur-md px-4 py-1.5 lg:px-6 lg:py-2 text-[10px] lg:text-xs font-semibold tracking-wider text-white/80 uppercase border border-white/10">Atmospheric Immersion</span>
+                <span class="rounded-full bg-emerald-500/10 backdrop-blur-md px-4 py-1.5 lg:px-6 lg:py-2 text-[10px] lg:text-xs font-semibold tracking-wider text-emerald-300 uppercase border border-emerald-500/30">Foley &amp; Mix</span>
+              </div>
             </div>
+          </div>
+
+          <!-- Top-Right Action Controls (Settings & Mute) -->
+          <div class="absolute top-6 right-6 lg:top-8 lg:right-8 z-20 flex gap-3">
+            <!-- Settings / Floating Bar Toggle -->
+            <button class="controls-toggle-btn flex h-11 w-11 lg:h-12 lg:w-12 items-center justify-center rounded-full bg-white/10 backdrop-blur-md transition-all hover:bg-white/20 active:scale-95 text-white" title="Controls" aria-label="Controls">
+              <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="3"></circle>
+                <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+              </svg>
+            </button>
+
+            <!-- Mute / Unmute Button -->
+            <button class="sound-toggle-btn flex h-11 w-11 lg:h-12 lg:w-12 items-center justify-center rounded-full bg-white/10 backdrop-blur-md transition-all hover:bg-white/20 active:scale-95 text-white" title="Mute/Unmute" aria-label="Mute/Unmute">
+              <!-- Muted Icon (default) -->
+              <svg class="sound-off-icon w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                <line x1="23" y1="9" x2="17" y2="15"></line>
+                <line x1="17" y1="9" x2="23" y2="15"></line>
+              </svg>
+              <!-- Unmuted Icon -->
+              <svg class="sound-on-icon w-5 h-5 hidden text-emerald-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+                <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
+              </svg>
+            </button>
+          </div>
+
+          <!-- Floating Playback Bar (Hidden until ⚙️ toggled) -->
+          <div class="video-controls-bar absolute bottom-6 lg:bottom-10 left-1/2 z-30 flex -translate-x-1/2 items-center gap-6 rounded-full bg-black/70 backdrop-blur-xl px-8 py-3.5 border border-white/15 opacity-0 pointer-events-none transition-all duration-300">
+            <!-- -5s Seek -->
+            <button class="seek-back-btn text-white/60 hover:text-white transition-colors" title="-5s" aria-label="Rewind 5 seconds">
+              <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path>
+                <path d="M3 3v5h5"></path>
+              </svg>
+            </button>
+            <!-- Play / Pause Circle -->
+            <button class="play-pause-btn flex h-11 w-11 items-center justify-center rounded-full bg-white text-black transition-transform hover:scale-110 active:scale-95" title="Play/Pause" aria-label="Play/Pause">
+              <div class="pause-bars flex gap-1">
+                <div class="h-3.5 w-1 bg-black rounded-full"></div>
+                <div class="h-3.5 w-1 bg-black rounded-full"></div>
+              </div>
+              <svg class="play-arrow hidden w-4 h-4 ml-0.5 fill-black" viewBox="0 0 24 24">
+                <polygon points="5 3 19 12 5 21 5 3"></polygon>
+              </svg>
+            </button>
+            <!-- +5s Seek -->
+            <button class="seek-fwd-btn text-white/60 hover:text-white transition-colors" title="+5s" aria-label="Forward 5 seconds">
+              <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 12a9 9 0 1 1-9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"></path>
+                <path d="M21 3v5h-5"></path>
+              </svg>
+            </button>
+          </div>
+
+          <!-- Loading Spinner -->
+          <div class="video-loader absolute inset-0 z-30 flex items-center justify-center bg-black/60 backdrop-blur-sm transition-opacity duration-300 pointer-events-none">
+            <div class="h-9 w-9 animate-spin rounded-full border-2 border-white/20 border-t-emerald-400"></div>
           </div>
         </div>
 
-        <!-- Work 2: Documentary Style Edit -->
-        <div class="work-card group relative liquid-glass rounded-[2rem] overflow-hidden border border-emerald-500/20 hover:border-emerald-400/50 transition-all duration-500" data-category="long">
-          <div class="aspect-video relative overflow-hidden bg-forest-900">
-            <img src="https://images.unsplash.com/photo-1542273917363-3b1817f69a2d?q=80&w=1200&auto=format&fit=crop" alt="Documentary Style Edit" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 opacity-80" />
-            <div class="absolute inset-0 bg-gradient-to-t from-forest-950 via-forest-950/20 to-transparent"></div>
-            
-            <button class="play-modal-trigger absolute inset-0 flex items-center justify-center" data-title="Documentary Narrative Arc" data-video="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260315_073750_51473149-4350-4920-ae24-c8214286f323.mp4" aria-label="Play video">
-              <span class="w-16 h-16 rounded-full bg-emerald-500/20 backdrop-blur-md border border-emerald-400/60 flex items-center justify-center text-emerald-300 group-hover:scale-110 group-hover:bg-emerald-400 group-hover:text-forest-950 transition-all shadow-[0_0_25px_rgba(52,211,153,0.3)]">
-                <svg class="w-7 h-7 ml-1" viewBox="0 0 24 24" fill="currentColor">
-                  <polygon points="5 3 19 12 5 21 5 3"></polygon>
-                </svg>
-              </span>
-            </button>
-
-            <span class="absolute top-4 left-4 px-3 py-1 rounded-full bg-forest-950/80 backdrop-blur-md border border-emerald-500/30 text-[10px] font-mono tracking-widest text-emerald-300 uppercase">
-              02 • Documentary
-            </span>
+        <!-- Video 02: Documentary Style Edit -->
+        <div class="interactive-video-card interactive-card liquid-glass group relative flex flex-col overflow-hidden rounded-[2.5rem] transition-all hover:bg-white/[0.03] cursor-pointer aspect-video border border-emerald-500/20 hover:border-emerald-400/50 shadow-[0_20px_50px_rgba(0,0,0,0.6)]" 
+             data-category="long" 
+             data-work-id="02" 
+             data-title="Documentary Style Edit" 
+             data-video="https://whypriyanshu.in/videos/work02.mp4" 
+             data-vertical="false">
+          
+          <div class="absolute inset-0 z-0 overflow-hidden">
+            <video class="card-video h-full w-full object-cover scale-105 transition-transform duration-700 ease-out group-hover:scale-100" 
+                   src="https://whypriyanshu.in/videos/work02.mp4" 
+                   muted 
+                   loop 
+                   playsinline 
+                   preload="metadata"></video>
+            <div class="absolute inset-0 bg-black/40 transition-opacity duration-500 group-hover:bg-black/20"></div>
           </div>
 
-          <div class="p-8">
-            <h3 class="text-2xl font-semibold text-white mb-2 group-hover:text-emerald-300 transition-colors">The Untamed Rhythm</h3>
-            <p class="text-sm text-white/60 leading-relaxed mb-6">
-              Story pacing synced to organic dialogue, tension spikes, and cinematic grading.
-            </p>
-            <div class="flex items-center justify-between text-xs font-mono text-emerald-400/80 pt-4 border-t border-white/5">
-              <span>DaVinci • After Effects</span>
-              <span class="text-white/40">Watch 4K ↗</span>
+          <div class="relative z-10 flex h-full flex-col p-8 lg:p-16 pointer-events-none">
+            <span class="font-serif text-6xl lg:text-9xl italic text-white/20 transition-colors duration-500 group-hover:text-white/40">02</span>
+            <div class="mt-auto">
+              <h3 class="text-3xl lg:text-6xl font-medium drop-shadow-lg text-white group-hover:text-emerald-200 transition-colors">Documentary Style Edit</h3>
+              <div class="mt-4 flex flex-wrap gap-2 lg:gap-3">
+                <span class="rounded-full bg-black/50 backdrop-blur-md px-4 py-1.5 lg:px-6 lg:py-2 text-[10px] lg:text-xs font-semibold tracking-wider text-white/80 uppercase border border-white/10">Narrative Pacing</span>
+                <span class="rounded-full bg-emerald-500/10 backdrop-blur-md px-4 py-1.5 lg:px-6 lg:py-2 text-[10px] lg:text-xs font-semibold tracking-wider text-emerald-300 uppercase border border-emerald-500/30">Cinematic Color</span>
+              </div>
             </div>
+          </div>
+
+          <div class="absolute top-6 right-6 lg:top-8 lg:right-8 z-20 flex gap-3">
+            <button class="controls-toggle-btn flex h-11 w-11 lg:h-12 lg:w-12 items-center justify-center rounded-full bg-white/10 backdrop-blur-md transition-all hover:bg-white/20 active:scale-95 text-white" title="Controls">
+              <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="3"></circle>
+                <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+              </svg>
+            </button>
+            <button class="sound-toggle-btn flex h-11 w-11 lg:h-12 lg:w-12 items-center justify-center rounded-full bg-white/10 backdrop-blur-md transition-all hover:bg-white/20 active:scale-95 text-white" title="Mute/Unmute">
+              <svg class="sound-off-icon w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                <line x1="23" y1="9" x2="17" y2="15"></line>
+                <line x1="17" y1="9" x2="23" y2="15"></line>
+              </svg>
+              <svg class="sound-on-icon w-5 h-5 hidden text-emerald-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+                <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
+              </svg>
+            </button>
+          </div>
+
+          <div class="video-controls-bar absolute bottom-6 lg:bottom-10 left-1/2 z-30 flex -translate-x-1/2 items-center gap-6 rounded-full bg-black/70 backdrop-blur-xl px-8 py-3.5 border border-white/15 opacity-0 pointer-events-none transition-all duration-300">
+            <button class="seek-back-btn text-white/60 hover:text-white transition-colors" title="-5s">
+              <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path>
+                <path d="M3 3v5h5"></path>
+              </svg>
+            </button>
+            <button class="play-pause-btn flex h-11 w-11 items-center justify-center rounded-full bg-white text-black transition-transform hover:scale-110 active:scale-95" title="Play/Pause">
+              <div class="pause-bars flex gap-1">
+                <div class="h-3.5 w-1 bg-black rounded-full"></div>
+                <div class="h-3.5 w-1 bg-black rounded-full"></div>
+              </div>
+              <svg class="play-arrow hidden w-4 h-4 ml-0.5 fill-black" viewBox="0 0 24 24">
+                <polygon points="5 3 19 12 5 21 5 3"></polygon>
+              </svg>
+            </button>
+            <button class="seek-fwd-btn text-white/60 hover:text-white transition-colors" title="+5s">
+              <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 12a9 9 0 1 1-9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"></path>
+                <path d="M21 3v5h-5"></path>
+              </svg>
+            </button>
+          </div>
+
+          <div class="video-loader absolute inset-0 z-30 flex items-center justify-center bg-black/60 backdrop-blur-sm transition-opacity duration-300 pointer-events-none">
+            <div class="h-9 w-9 animate-spin rounded-full border-2 border-white/20 border-t-emerald-400"></div>
           </div>
         </div>
 
-        <!-- Work 3: Raw to Retention -->
-        <div class="work-card group relative liquid-glass rounded-[2rem] overflow-hidden border border-emerald-500/20 hover:border-emerald-400/50 transition-all duration-500" data-category="motion">
-          <div class="aspect-video relative overflow-hidden bg-forest-900">
-            <img src="https://images.unsplash.com/photo-1511497584788-87676104235f?q=80&w=1200&auto=format&fit=crop" alt="Raw to Retention" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 opacity-80" />
-            <div class="absolute inset-0 bg-gradient-to-t from-forest-950 via-forest-950/20 to-transparent"></div>
-            
-            <button class="play-modal-trigger absolute inset-0 flex items-center justify-center" data-title="Raw Clips to High Retention" data-video="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260315_073750_51473149-4350-4920-ae24-c8214286f323.mp4" aria-label="Play video">
-              <span class="w-16 h-16 rounded-full bg-emerald-500/20 backdrop-blur-md border border-emerald-400/60 flex items-center justify-center text-emerald-300 group-hover:scale-110 group-hover:bg-emerald-400 group-hover:text-forest-950 transition-all shadow-[0_0_25px_rgba(52,211,153,0.3)]">
-                <svg class="w-7 h-7 ml-1" viewBox="0 0 24 24" fill="currentColor">
-                  <polygon points="5 3 19 12 5 21 5 3"></polygon>
-                </svg>
-              </span>
-            </button>
-
-            <span class="absolute top-4 left-4 px-3 py-1 rounded-full bg-forest-950/80 backdrop-blur-md border border-emerald-500/30 text-[10px] font-mono tracking-widest text-emerald-300 uppercase">
-              03 • Motion VFX
-            </span>
+        <!-- Video 03: Raw to Retention -->
+        <div class="interactive-video-card interactive-card liquid-glass group relative flex flex-col overflow-hidden rounded-[2.5rem] transition-all hover:bg-white/[0.03] cursor-pointer aspect-video border border-emerald-500/20 hover:border-emerald-400/50 shadow-[0_20px_50px_rgba(0,0,0,0.6)]" 
+             data-category="long" 
+             data-work-id="03" 
+             data-title="Raw to Retention" 
+             data-video="https://whypriyanshu.in/videos/work03.mp4" 
+             data-vertical="false">
+          
+          <div class="absolute inset-0 z-0 overflow-hidden">
+            <video class="card-video h-full w-full object-cover scale-105 transition-transform duration-700 ease-out group-hover:scale-100" 
+                   src="https://whypriyanshu.in/videos/work03.mp4" 
+                   muted 
+                   loop 
+                   playsinline 
+                   preload="metadata"></video>
+            <div class="absolute inset-0 bg-black/40 transition-opacity duration-500 group-hover:bg-black/20"></div>
           </div>
 
-          <div class="p-8">
-            <h3 class="text-2xl font-semibold text-white mb-2 group-hover:text-emerald-300 transition-colors">Raw to Retention</h3>
-            <p class="text-sm text-white/60 leading-relaxed mb-6">
-              Transforming messy talking-head takes into dynamic visual essays with 3D typography and kinetic graphics.
-            </p>
-            <div class="flex items-center justify-between text-xs font-mono text-emerald-400/80 pt-4 border-t border-white/5">
-              <span>After Effects • Photoshop</span>
-              <span class="text-white/40">Watch 4K ↗</span>
+          <div class="relative z-10 flex h-full flex-col p-8 lg:p-16 pointer-events-none">
+            <span class="font-serif text-6xl lg:text-9xl italic text-white/20 transition-colors duration-500 group-hover:text-white/40">03</span>
+            <div class="mt-auto">
+              <h3 class="text-3xl lg:text-6xl font-medium drop-shadow-lg text-white group-hover:text-emerald-200 transition-colors">Raw to Retention</h3>
+              <div class="mt-4 flex flex-wrap gap-2 lg:gap-3">
+                <span class="rounded-full bg-black/50 backdrop-blur-md px-4 py-1.5 lg:px-6 lg:py-2 text-[10px] lg:text-xs font-semibold tracking-wider text-white/80 uppercase border border-white/10">High APV Mastery</span>
+                <span class="rounded-full bg-emerald-500/10 backdrop-blur-md px-4 py-1.5 lg:px-6 lg:py-2 text-[10px] lg:text-xs font-semibold tracking-wider text-emerald-300 uppercase border border-emerald-500/30">Visual Effects</span>
+              </div>
             </div>
+          </div>
+
+          <div class="absolute top-6 right-6 lg:top-8 lg:right-8 z-20 flex gap-3">
+            <button class="controls-toggle-btn flex h-11 w-11 lg:h-12 lg:w-12 items-center justify-center rounded-full bg-white/10 backdrop-blur-md transition-all hover:bg-white/20 active:scale-95 text-white" title="Controls">
+              <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="3"></circle>
+                <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+              </svg>
+            </button>
+            <button class="sound-toggle-btn flex h-11 w-11 lg:h-12 lg:w-12 items-center justify-center rounded-full bg-white/10 backdrop-blur-md transition-all hover:bg-white/20 active:scale-95 text-white" title="Mute/Unmute">
+              <svg class="sound-off-icon w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                <line x1="23" y1="9" x2="17" y2="15"></line>
+                <line x1="17" y1="9" x2="23" y2="15"></line>
+              </svg>
+              <svg class="sound-on-icon w-5 h-5 hidden text-emerald-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+                <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
+              </svg>
+            </button>
+          </div>
+
+          <div class="video-controls-bar absolute bottom-6 lg:bottom-10 left-1/2 z-30 flex -translate-x-1/2 items-center gap-6 rounded-full bg-black/70 backdrop-blur-xl px-8 py-3.5 border border-white/15 opacity-0 pointer-events-none transition-all duration-300">
+            <button class="seek-back-btn text-white/60 hover:text-white transition-colors" title="-5s">
+              <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path>
+                <path d="M3 3v5h5"></path>
+              </svg>
+            </button>
+            <button class="play-pause-btn flex h-11 w-11 items-center justify-center rounded-full bg-white text-black transition-transform hover:scale-110 active:scale-95" title="Play/Pause">
+              <div class="pause-bars flex gap-1">
+                <div class="h-3.5 w-1 bg-black rounded-full"></div>
+                <div class="h-3.5 w-1 bg-black rounded-full"></div>
+              </div>
+              <svg class="play-arrow hidden w-4 h-4 ml-0.5 fill-black" viewBox="0 0 24 24">
+                <polygon points="5 3 19 12 5 21 5 3"></polygon>
+              </svg>
+            </button>
+            <button class="seek-fwd-btn text-white/60 hover:text-white transition-colors" title="+5s">
+              <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 12a9 9 0 1 1-9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"></path>
+                <path d="M21 3v5h-5"></path>
+              </svg>
+            </button>
+          </div>
+
+          <div class="video-loader absolute inset-0 z-30 flex items-center justify-center bg-black/60 backdrop-blur-sm transition-opacity duration-300 pointer-events-none">
+            <div class="h-9 w-9 animate-spin rounded-full border-2 border-white/20 border-t-emerald-400"></div>
           </div>
         </div>
 
       </div>
 
       <!-- ============================================== -->
-      <!-- VERTICALS SHOWCASE (Short-Form Reels)           -->
+      <!-- VERTICALS SECTION (Modeled after whypriyanshu) -->
       <!-- ============================================== -->
-      <div class="mt-28">
-        <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-12">
-          <div>
-            <span class="text-[10px] font-bold tracking-[0.4em] text-emerald-400 uppercase inline-block mb-2">Mobile High-Velocity</span>
-            <h3 class="text-3xl sm:text-4xl font-medium text-white">Verticals (9:16)</h3>
-            <p class="text-white/50 text-sm">Engineered for 90%+ completion rates on Reels &amp; TikTok.</p>
-          </div>
-          <span class="text-xs font-mono text-emerald-400 bg-emerald-500/10 px-3.5 py-1.5 rounded-full border border-emerald-500/20">
-            Over 20M+ Short-Form Views
-          </span>
+      <div class="mt-28" id="verticals">
+        <div class="mb-16">
+          <span class="text-[10px] font-bold tracking-[0.4em] text-emerald-400 uppercase inline-block mb-3">Verticals</span>
+          <h3 class="text-4xl sm:text-6xl font-medium text-white">Short Form Mastery</h3>
+          <p class="mt-3 text-white/50 text-xl font-light">Short Form. High Retention.</p>
         </div>
 
-        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8 justify-center">
+        <div class="grid gap-12 sm:grid-cols-2 lg:grid-cols-2 justify-center max-w-5xl mx-auto" id="verticals-container">
           
-          <!-- Vertical 1 -->
-          <div class="work-card group relative liquid-glass rounded-[2.5rem] overflow-hidden border border-emerald-500/20 max-w-[380px] mx-auto w-full" data-category="vertical">
-            <div class="aspect-[9/16] relative bg-forest-950 overflow-hidden">
-              <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=800&auto=format&fit=crop" alt="Cinematic Podcast Vertical" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 opacity-80" />
-              <div class="absolute inset-0 bg-gradient-to-t from-forest-950 via-transparent to-transparent"></div>
-              
-              <button class="play-modal-trigger absolute inset-0 flex items-center justify-center" data-title="Cinematic Podcast Cut (Vertical)" data-video="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260315_073750_51473149-4350-4920-ae24-c8214286f323.mp4" aria-label="Play reel">
-                <span class="w-14 h-14 rounded-full bg-emerald-500/30 backdrop-blur-md border border-emerald-400 flex items-center justify-center text-emerald-200 group-hover:scale-110 group-hover:bg-emerald-400 group-hover:text-forest-950 transition-all">
-                  <svg class="w-6 h-6 ml-0.5" viewBox="0 0 24 24" fill="currentColor">
-                    <polygon points="5 3 19 12 5 21 5 3"></polygon>
-                  </svg>
-                </span>
-              </button>
+          <!-- Vertical Video 01: Podcast 01 -->
+          <div class="interactive-video-card interactive-card liquid-glass group relative flex flex-col overflow-hidden rounded-[2.5rem] transition-all hover:bg-white/[0.03] cursor-pointer aspect-[9/16] max-h-[85vh] mx-auto w-full max-w-[450px] border border-emerald-500/20 hover:border-emerald-400/50 shadow-[0_20px_50px_rgba(0,0,0,0.6)]" 
+               data-category="vertical" 
+               data-work-id="01" 
+               data-title="Cinematic Podcast Edit" 
+               data-video="https://whypriyanshu.in/videos/podcast01.mp4" 
+               data-vertical="true">
+            
+            <div class="absolute inset-0 z-0 overflow-hidden">
+              <video class="card-video h-full w-full object-cover scale-105 transition-transform duration-700 ease-out group-hover:scale-100" 
+                     src="https://whypriyanshu.in/videos/podcast01.mp4" 
+                     muted 
+                     loop 
+                     playsinline 
+                     preload="metadata"></video>
+              <div class="absolute inset-0 bg-black/40 transition-opacity duration-500 group-hover:bg-black/20"></div>
+            </div>
 
-              <div class="absolute bottom-6 left-6 right-6">
-                <span class="inline-block px-2.5 py-1 rounded-full bg-emerald-500/20 border border-emerald-400/40 text-[9px] font-bold uppercase tracking-wider text-emerald-300 mb-2">1.8M Views</span>
-                <h4 class="text-xl font-semibold text-white">Cinematic Podcast Cut</h4>
-                <p class="text-xs text-white/60 mt-1">Multi-angle cut, dynamic word captions, sound impacts.</p>
+            <div class="relative z-10 flex h-full flex-col p-8 lg:p-12 pointer-events-none">
+              <span class="font-serif text-5xl lg:text-7xl italic text-white/20 transition-colors duration-500 group-hover:text-white/40">01</span>
+              <div class="mt-auto">
+                <h4 class="text-2xl lg:text-4xl font-medium drop-shadow-lg text-white font-serif italic group-hover:text-emerald-200 transition-colors">Cinematic Podcast Edit</h4>
+                <div class="mt-4 flex flex-wrap gap-2">
+                  <span class="rounded-full bg-black/50 backdrop-blur-md px-4 py-1.5 text-[10px] font-semibold tracking-wider text-white/80 uppercase border border-white/10">Viral Reel</span>
+                  <span class="rounded-full bg-emerald-500/10 backdrop-blur-md px-4 py-1.5 text-[10px] font-semibold tracking-wider text-emerald-300 uppercase border border-emerald-500/30">Multi-Angle Cut</span>
+                </div>
               </div>
+            </div>
+
+            <div class="absolute top-6 right-6 z-20 flex gap-2.5">
+              <button class="controls-toggle-btn flex h-10 w-10 items-center justify-center rounded-full bg-white/10 backdrop-blur-md transition-all hover:bg-white/20 active:scale-95 text-white" title="Controls">
+                <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="12" cy="12" r="3"></circle>
+                  <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+                </svg>
+              </button>
+              <button class="sound-toggle-btn flex h-10 w-10 items-center justify-center rounded-full bg-white/10 backdrop-blur-md transition-all hover:bg-white/20 active:scale-95 text-white" title="Mute/Unmute">
+                <svg class="sound-off-icon w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                  <line x1="23" y1="9" x2="17" y2="15"></line>
+                  <line x1="17" y1="9" x2="23" y2="15"></line>
+                </svg>
+                <svg class="sound-on-icon w-4 h-4 hidden text-emerald-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                  <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+                  <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
+                </svg>
+              </button>
+            </div>
+
+            <div class="video-controls-bar absolute bottom-6 left-1/2 z-30 flex -translate-x-1/2 items-center gap-5 rounded-full bg-black/70 backdrop-blur-xl px-6 py-3 border border-white/15 opacity-0 pointer-events-none transition-all duration-300">
+              <button class="seek-back-btn text-white/60 hover:text-white transition-colors" title="-5s">
+                <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path>
+                  <path d="M3 3v5h5"></path>
+                </svg>
+              </button>
+              <button class="play-pause-btn flex h-10 w-10 items-center justify-center rounded-full bg-white text-black transition-transform hover:scale-110 active:scale-95" title="Play/Pause">
+                <div class="pause-bars flex gap-0.5">
+                  <div class="h-3 w-1 bg-black rounded-full"></div>
+                  <div class="h-3 w-1 bg-black rounded-full"></div>
+                </div>
+                <svg class="play-arrow hidden w-3.5 h-3.5 ml-0.5 fill-black" viewBox="0 0 24 24">
+                  <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                </svg>
+              </button>
+              <button class="seek-fwd-btn text-white/60 hover:text-white transition-colors" title="+5s">
+                <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M21 12a9 9 0 1 1-9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"></path>
+                  <path d="M21 3v5h-5"></path>
+                </svg>
+              </button>
+            </div>
+
+            <div class="video-loader absolute inset-0 z-30 flex items-center justify-center bg-black/60 backdrop-blur-sm transition-opacity duration-300 pointer-events-none">
+              <div class="h-8 w-8 animate-spin rounded-full border-2 border-white/20 border-t-emerald-400"></div>
             </div>
           </div>
 
-          <!-- Vertical 2 -->
-          <div class="work-card group relative liquid-glass rounded-[2.5rem] overflow-hidden border border-emerald-500/20 max-w-[380px] mx-auto w-full" data-category="vertical">
-            <div class="aspect-[9/16] relative bg-forest-950 overflow-hidden">
-              <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=800&auto=format&fit=crop" alt="Viral Hook Reel" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 opacity-80" />
-              <div class="absolute inset-0 bg-gradient-to-t from-forest-950 via-transparent to-transparent"></div>
-              
-              <button class="play-modal-trigger absolute inset-0 flex items-center justify-center" data-title="Viral Story Hook Reel" data-video="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260315_073750_51473149-4350-4920-ae24-c8214286f323.mp4" aria-label="Play reel">
-                <span class="w-14 h-14 rounded-full bg-emerald-500/30 backdrop-blur-md border border-emerald-400 flex items-center justify-center text-emerald-200 group-hover:scale-110 group-hover:bg-emerald-400 group-hover:text-forest-950 transition-all">
-                  <svg class="w-6 h-6 ml-0.5" viewBox="0 0 24 24" fill="currentColor">
-                    <polygon points="5 3 19 12 5 21 5 3"></polygon>
-                  </svg>
-                </span>
-              </button>
+          <!-- Vertical Video 02: Podcast 02 -->
+          <div class="interactive-video-card interactive-card liquid-glass group relative flex flex-col overflow-hidden rounded-[2.5rem] transition-all hover:bg-white/[0.03] cursor-pointer aspect-[9/16] max-h-[85vh] mx-auto w-full max-w-[450px] border border-emerald-500/20 hover:border-emerald-400/50 shadow-[0_20px_50px_rgba(0,0,0,0.6)]" 
+               data-category="vertical" 
+               data-work-id="02" 
+               data-title="Cinematic Podcast Edit" 
+               data-video="https://whypriyanshu.in/videos/podcast02.mp4" 
+               data-vertical="true">
+            
+            <div class="absolute inset-0 z-0 overflow-hidden">
+              <video class="card-video h-full w-full object-cover scale-105 transition-transform duration-700 ease-out group-hover:scale-100" 
+                     src="https://whypriyanshu.in/videos/podcast02.mp4" 
+                     muted 
+                     loop 
+                     playsinline 
+                     preload="metadata"></video>
+              <div class="absolute inset-0 bg-black/40 transition-opacity duration-500 group-hover:bg-black/20"></div>
+            </div>
 
-              <div class="absolute bottom-6 left-6 right-6">
-                <span class="inline-block px-2.5 py-1 rounded-full bg-emerald-500/20 border border-emerald-400/40 text-[9px] font-bold uppercase tracking-wider text-emerald-300 mb-2">3.4M Views</span>
-                <h4 class="text-xl font-semibold text-white">Viral Story Hook Reel</h4>
-                <p class="text-xs text-white/60 mt-1">Split-second visual hook with sound risers and color pop.</p>
+            <div class="relative z-10 flex h-full flex-col p-8 lg:p-12 pointer-events-none">
+              <span class="font-serif text-5xl lg:text-7xl italic text-white/20 transition-colors duration-500 group-hover:text-white/40">02</span>
+              <div class="mt-auto">
+                <h4 class="text-2xl lg:text-4xl font-medium drop-shadow-lg text-white font-serif italic group-hover:text-emerald-200 transition-colors">Cinematic Podcast Edit</h4>
+                <div class="mt-4 flex flex-wrap gap-2">
+                  <span class="rounded-full bg-black/50 backdrop-blur-md px-4 py-1.5 text-[10px] font-semibold tracking-wider text-white/80 uppercase border border-white/10">Dynamic Pacing</span>
+                  <span class="rounded-full bg-emerald-500/10 backdrop-blur-md px-4 py-1.5 text-[10px] font-semibold tracking-wider text-emerald-300 uppercase border border-emerald-500/30">High Retention</span>
+                </div>
               </div>
             </div>
-          </div>
 
-          <!-- Vertical 3 -->
-          <div class="work-card group relative liquid-glass rounded-[2.5rem] overflow-hidden border border-emerald-500/20 max-w-[380px] mx-auto w-full sm:col-span-2 lg:col-span-1" data-category="vertical">
-            <div class="aspect-[9/16] relative bg-forest-950 overflow-hidden">
-              <img src="https://images.unsplash.com/photo-1448375240586-882707db888b?q=80&w=800&auto=format&fit=crop" alt="High-Retention Micro Doc" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 opacity-80" />
-              <div class="absolute inset-0 bg-gradient-to-t from-forest-950 via-transparent to-transparent"></div>
-              
-              <button class="play-modal-trigger absolute inset-0 flex items-center justify-center" data-title="Micro-Doc Brand Story" data-video="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260315_073750_51473149-4350-4920-ae24-c8214286f323.mp4" aria-label="Play reel">
-                <span class="w-14 h-14 rounded-full bg-emerald-500/30 backdrop-blur-md border border-emerald-400 flex items-center justify-center text-emerald-200 group-hover:scale-110 group-hover:bg-emerald-400 group-hover:text-forest-950 transition-all">
-                  <svg class="w-6 h-6 ml-0.5" viewBox="0 0 24 24" fill="currentColor">
-                    <polygon points="5 3 19 12 5 21 5 3"></polygon>
-                  </svg>
-                </span>
+            <div class="absolute top-6 right-6 z-20 flex gap-2.5">
+              <button class="controls-toggle-btn flex h-10 w-10 items-center justify-center rounded-full bg-white/10 backdrop-blur-md transition-all hover:bg-white/20 active:scale-95 text-white" title="Controls">
+                <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="12" cy="12" r="3"></circle>
+                  <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+                </svg>
               </button>
+              <button class="sound-toggle-btn flex h-10 w-10 items-center justify-center rounded-full bg-white/10 backdrop-blur-md transition-all hover:bg-white/20 active:scale-95 text-white" title="Mute/Unmute">
+                <svg class="sound-off-icon w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                  <line x1="23" y1="9" x2="17" y2="15"></line>
+                  <line x1="17" y1="9" x2="23" y2="15"></line>
+                </svg>
+                <svg class="sound-on-icon w-4 h-4 hidden text-emerald-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                  <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+                  <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
+                </svg>
+              </button>
+            </div>
 
-              <div class="absolute bottom-6 left-6 right-6">
-                <span class="inline-block px-2.5 py-1 rounded-full bg-emerald-500/20 border border-emerald-400/40 text-[9px] font-bold uppercase tracking-wider text-emerald-300 mb-2">920K Views</span>
-                <h4 class="text-xl font-semibold text-white">Micro-Doc Brand Story</h4>
-                <p class="text-xs text-white/60 mt-1">High production value documentary reel for luxury brands.</p>
-              </div>
+            <div class="video-controls-bar absolute bottom-6 left-1/2 z-30 flex -translate-x-1/2 items-center gap-5 rounded-full bg-black/70 backdrop-blur-xl px-6 py-3 border border-white/15 opacity-0 pointer-events-none transition-all duration-300">
+              <button class="seek-back-btn text-white/60 hover:text-white transition-colors" title="-5s">
+                <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path>
+                  <path d="M3 3v5h5"></path>
+                </svg>
+              </button>
+              <button class="play-pause-btn flex h-10 w-10 items-center justify-center rounded-full bg-white text-black transition-transform hover:scale-110 active:scale-95" title="Play/Pause">
+                <div class="pause-bars flex gap-0.5">
+                  <div class="h-3 w-1 bg-black rounded-full"></div>
+                  <div class="h-3 w-1 bg-black rounded-full"></div>
+                </div>
+                <svg class="play-arrow hidden w-3.5 h-3.5 ml-0.5 fill-black" viewBox="0 0 24 24">
+                  <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                </svg>
+              </button>
+              <button class="seek-fwd-btn text-white/60 hover:text-white transition-colors" title="+5s">
+                <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M21 12a9 9 0 1 1-9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"></path>
+                  <path d="M21 3v5h-5"></path>
+                </svg>
+              </button>
+            </div>
+
+            <div class="video-loader absolute inset-0 z-30 flex items-center justify-center bg-black/60 backdrop-blur-sm transition-opacity duration-300 pointer-events-none">
+              <div class="h-8 w-8 animate-spin rounded-full border-2 border-white/20 border-t-emerald-400"></div>
             </div>
           </div>
 
@@ -794,19 +1039,33 @@
 
     </section>
 
-    <!-- Video Modal Player -->
-    <div id="video-modal" class="fixed inset-0 z-[110] flex items-center justify-center px-4 bg-black/85 backdrop-blur-xl hidden">
-      <div class="relative w-full max-w-4xl rounded-3xl overflow-hidden liquid-glass border border-emerald-500/30 shadow-[0_25px_70px_rgba(0,0,0,0.9)]">
-        <div class="flex items-center justify-between px-6 py-4 border-b border-white/10 bg-forest-950/80">
-          <h4 id="modal-video-title" class="text-base font-semibold text-white">Video Showcase</h4>
-          <button id="close-video-modal" class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center text-white/70 hover:text-white transition-colors">
-            ✕
-          </button>
+    <!-- ============================================== -->
+    <!-- FULLSCREEN VIDEO MODAL (Exact whypriyanshu)   -->
+    <!-- ============================================== -->
+    <div id="video-modal" class="fixed inset-0 z-[110] flex items-center justify-center bg-black/95 backdrop-blur-2xl p-4 sm:p-6 lg:p-16 opacity-0 pointer-events-none transition-all duration-300" aria-modal="true" role="dialog">
+      <!-- Backdrop click -->
+      <div id="video-modal-backdrop" class="absolute inset-0 z-0"></div>
+
+      <!-- Modal Dialog Window -->
+      <div id="video-modal-dialog" class="relative z-10 w-full overflow-hidden rounded-3xl bg-white/[0.02] border border-white/10 shadow-[0_25px_80px_rgba(0,0,0,0.9)] max-w-6xl transform scale-95 transition-all duration-300">
+        <!-- Video Box -->
+        <div id="modal-video-box" class="relative w-full bg-black flex items-center justify-center aspect-video">
+          <video id="modal-video-element" class="h-full w-full object-contain" controls controlslist="nodownload" playsinline></video>
         </div>
-        <div class="aspect-video bg-black">
-          <video id="modal-video-element" controls class="w-full h-full object-contain">
-            <source src="" type="video/mp4" />
-          </video>
+
+        <!-- Modal Footer -->
+        <div class="p-6 lg:p-10 bg-black/60 backdrop-blur-xl border-t border-white/5 flex items-center justify-between gap-6">
+          <div>
+            <h3 id="modal-video-title" class="text-2xl lg:text-4xl font-medium text-white">Sound Design</h3>
+            <p id="modal-video-subtitle" class="mt-2 text-sm lg:text-base text-white/50">Cinematic Edit • 4K Resolution</p>
+          </div>
+
+          <button id="close-video-modal" class="flex h-12 w-12 lg:h-14 lg:w-14 items-center justify-center rounded-full bg-white/10 text-white transition-all hover:bg-white hover:text-black active:scale-95" aria-label="Close modal">
+            <svg class="w-6 h-6 rotate-45" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <line x1="12" y1="5" x2="12" y2="19"></line>
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+          </button>
         </div>
       </div>
     </div>
